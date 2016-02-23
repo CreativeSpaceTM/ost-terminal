@@ -1,0 +1,31 @@
+#superView {
+	padding: 15px;
+}
+
+	#superView #userHeader {
+		margin: -15px;
+		margin-bottom: 30px;
+		padding: 0.1px;
+	}
+
+	#superView .padded {
+		padding-top: 34px;
+	}
+
+		#superView .padded button {
+			display: block;
+			width: 100%;
+		}
+
+	#superView label {
+		font-weight: 700;
+		font-size: 18px;
+	}
+
+	#superView #logoutWrap {
+		text-align: right;
+	}
+
+		#logoutWrap button {
+			margin: 0;
+		}

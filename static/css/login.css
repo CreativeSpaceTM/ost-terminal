@@ -1,0 +1,59 @@
+#loginView {
+
+}
+
+	#loginView h1 {
+		text-align: center;
+	}
+
+	#loginView #usersList {
+		text-align: center;
+		padding: 10px 20px;
+	}
+
+		#usersList .userItem {
+			cursor: pointer;
+			width: 20%;
+		}
+
+.modal .avatar {
+	width: 200px;
+	height: 200px;
+}
+
+.modal #loginModalPicture,
+.modal #loginModalKeypad {
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+
+.modal #loginModalKeypad .pointing {
+	display: block;
+	width: 70%;
+	margin: 10px auto;
+}
+
+.modal #loginModalKeypad .pointing[hidden] {
+	display: none;
+}
+
+.modal #loginModalKeypad .input {
+	margin-bottom: 15px;
+}
+
+.modal #loginModalPicture {
+	font-size: 20px;
+	padding-top: 45px;
+}
+
+#loginView .modal .actions {
+	width: 50%;
+	float: right;
+	text-align: center;
+	padding-right: 26px !important;
+}
+
+	#loginView .modal .actions .button {
+		margin: 5px;
+	}
