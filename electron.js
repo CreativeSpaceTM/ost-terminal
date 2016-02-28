@@ -11,12 +11,10 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
+
 	mainWindow = new BrowserWindow({
 		kiosk: true,
-		nodeIntegration: false,
-		webPreferences: {
-			webSecurity: false
-		}
+		nodeIntegration: false
 	});
 
 	mainWindow.loadURL('file://' + __dirname + '/index.html');

@@ -6,6 +6,8 @@ import Modal from "./modal";
 
 import {STATUS, SIDE} from "./const";
 
+import * as config from "./config";
+
 class ProductItem extends React.Component {
 
 	constructor(props) {
@@ -126,7 +128,7 @@ class OpScreen extends React.Component {
 		});
 
 		$.ajax({
-			url: "/api/v1.0/defect/all",
+			url: config.server + "/api/v1.0/defect/all",
 			success: $.proxy(function (defects) {
 				this.setState({
 					defects: defects
@@ -151,7 +153,7 @@ class OpScreen extends React.Component {
 		localStorage.setItem("stats", JSON.stringify(this.stats));
 
 		$.ajax({
-			url: "/api/v1.0/stat/add",
+			url: config.server + "/api/v1.0/stat/add",
 			method: "POST",
 			contentType: "application/json",
 			data: JSON.stringify({stats: this.stats}),
@@ -191,7 +193,7 @@ class OpScreen extends React.Component {
 
 		return (
 			<div id="opView">
-				<link href="/static/css/opScreen.css" rel="stylesheet" />
+				<link href="static/css/opScreen.css" rel="stylesheet" />
 				<div id="userHeader">
 					<button className="ui primary button"
 					        onClick={this.gotoLogin.bind(this)}>

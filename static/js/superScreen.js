@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import { hashHistory } from 'react-router';
 
+import * as config from "./config";
+
 class SuperScreen extends React.Component {
 
 	constructor(props) {
@@ -18,7 +20,7 @@ class SuperScreen extends React.Component {
 
 	componentDidMount() {
 		$.ajax({
-			url: "/api/v1.0/product/all",
+			url: config.server + "/api/v1.0/product/all",
 			success: $.proxy(function (products) {
 				this.setState({
 					products: products

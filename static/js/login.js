@@ -34,7 +34,6 @@ class Login extends React.Component {
 	componentDidMount() {
 		$.ajax({
 			url: config.server + "/api/v1.0/user/all",
-
 			success: $.proxy(function (users) {
 				this.setState({
 					users: users
@@ -45,7 +44,7 @@ class Login extends React.Component {
 
 	login(okBtn) {
 		$.ajax({
-			url: "/api/v1.0/user/login",
+			url: config.server + "/api/v1.0/user/login",
 			method: "POST",
 			dataType: "json",
 			data: {
@@ -74,7 +73,7 @@ class Login extends React.Component {
 				<div className="column userItem" key={user.id} onClick={this.userClicked.bind(this, user)}>
 					<div className="ui fluid card">
 						<div className="image">
-							<img src="/static/img/defaultAvatar.png" />
+							<img src="static/img/defaultAvatar.png" />
 						</div>
 						<div className="content">
 							<a className="header">{user.name}</a>
@@ -93,7 +92,7 @@ class Login extends React.Component {
 
 				<Modal ref="modal" onOk={this.login.bind(this)}>
 					<div id="loginModalPicture">
-						<img src="/static/img/defaultAvatar.png" className="avatar"/>
+						<img src="static/img/defaultAvatar.png" className="avatar"/>
 						<div>
 							{this.state.currentUser && this.state.currentUser.name}
 						</div>
