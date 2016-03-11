@@ -4,7 +4,7 @@
   "description": "",
   "main": "electron.js",
   "scripts": {
-    "start": "grunt start",
+    "start": "electron electron.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -22,6 +22,7 @@
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
     "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^1.0.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-webpack": "^1.0.11",
     "webpack": "^1.12.14",
