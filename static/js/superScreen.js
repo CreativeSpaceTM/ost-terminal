@@ -1,8 +1,8 @@
+/*global config*/
+
 import React from 'react';
 import _ from 'lodash';
 import { hashHistory } from 'react-router';
-
-import * as config from "./config";
 
 class SuperScreen extends React.Component {
 
@@ -124,6 +124,7 @@ class SuperScreen extends React.Component {
 					<div className="fourteen wide column">
 						<label>Product</label>
 						<select onChange={this.handleProductChange.bind(this)}
+						        id="productSelect"
 						        value={this.state.product}
 						        disabled={this.isProductListDisabled()}
 						        className="ui fluid normal dropdown">

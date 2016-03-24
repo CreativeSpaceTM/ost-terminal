@@ -1,3 +1,5 @@
+/*global config*/
+
 import React from 'react';
 import _ from "lodash";
 import { hashHistory } from 'react-router';
@@ -5,8 +7,6 @@ import { hashHistory } from 'react-router';
 import Modal from "./modal";
 
 import {STATUS, SIDE} from "./const";
-
-import * as config from "./config";
 
 class ProductItem extends React.Component {
 

@@ -1,8 +1,8 @@
+/*global config*/
 import React from 'react';
 import Keypad from "./keypad";
 import Modal from "./modal";
 import utils from "./utils";
-import * as config from "./config";
 
 class Login extends React.Component {
 

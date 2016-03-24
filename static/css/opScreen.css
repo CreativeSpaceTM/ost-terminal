@@ -46,3 +46,11 @@ html,
 				text-align: center;
 				font-weight: 700;
 			}
+
+			#opView .productItem .section button {
+				font-size: 24px;
+			}
+
+			#opView .productItem .section button.green {
+				margin-right: 40px;
+			}

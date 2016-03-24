@@ -2,6 +2,11 @@
 	padding: 15px;
 }
 
+	#superView #productSelect {
+		font-size: 22px;
+		padding: 0;
+	}
+
 	#superView #userHeader {
 		margin: -15px;
 		margin-bottom: 30px;

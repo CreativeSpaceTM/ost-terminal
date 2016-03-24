@@ -43,4 +43,5 @@
 
 	.keypad button.ui.button {
 		margin: 5px;
+		font-size: 22px;
 	}
