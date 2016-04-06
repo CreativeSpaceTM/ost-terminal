@@ -14,6 +14,7 @@
 	"esversion": 6,
 	"globals": {
 		"$": false,
-		"com": true
+		"com": true,
+		"IScroll": false
 	}
 }

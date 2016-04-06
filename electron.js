@@ -16,7 +16,7 @@ app.on('ready', function() {
 		kiosk: true,
 		nodeIntegration: false
 	});
-	
+
 	mainWindow.setMenu(null);
 	mainWindow.loadURL('file://' + __dirname + '/index.html');
 
