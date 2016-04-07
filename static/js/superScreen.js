@@ -3,6 +3,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { hashHistory } from 'react-router';
+import Selector from "./selector";
 
 class SuperScreen extends React.Component {
 
@@ -51,9 +52,13 @@ class SuperScreen extends React.Component {
 		localStorage.setItem("products", JSON.stringify(this.state.selectedProducts));
 	}
 
-	addProduct() {
+	showProductPicker() {
+		this.refs.productSelector.show();
+	}
+
+	addProduct(product) {
 		this.setState({
-			selectedProducts: this.state.selectedProducts.concat([this.state.products[this.state.product]]),
+			selectedProducts: this.state.selectedProducts.concat([product]),
 			product: ""
 		}, this.updateProductStore);
 	}
@@ -76,27 +81,13 @@ class SuperScreen extends React.Component {
 	}
 
 	render() {
-		var productOptions = [];
-
-		for (var f = 0; f < this.state.products.length; f++) {
-			var product = this.state.products[f];
-
-			productOptions.push((
-				<option value={f}
-				        key={product.id}
-				        hidden={this.isProductSelected(product)}>
-					{_.capitalize(product.name)}
-				</option>
-			));
-		}
-
 		var selectedProducts = [];
 
-		for (f = 0; f < this.state.selectedProducts.length; f++) {
+		for (var f = 0; f < this.state.selectedProducts.length; f++) {
 			var selectedProduct = this.state.selectedProducts[f];
 
 			selectedProducts.push((
-				<tr key={selectedProduct.id}>
+				<tr key={f}>
 					<td>{selectedProduct.pn}</td>
 					<td>{_.capitalize(selectedProduct.name)}</td>
 					<td className="minCell">
@@ -120,27 +111,17 @@ class SuperScreen extends React.Component {
 					<h3>Supervisor: <b>{this.state.user.name}</b></h3>
 				</div>
 
-				<div className="ui grid">
-					<div className="fourteen wide column">
-						<label>Product</label>
-						<select onChange={this.handleProductChange.bind(this)}
-						        id="productSelect"
-						        value={this.state.product}
-						        disabled={this.isProductListDisabled()}
-						        className="ui fluid normal dropdown">
-							<option value="">-- Select product --</option>
-							{productOptions}
-						</select>
-					</div>
+				<button className="ui icon green button"
+				        disabled={this.isProductListDisabled()}
+				        onClick={this.showProductPicker.bind(this)}>
+					<i className="add square icon"></i> Add product
+				</button>
 
-					<div className="two wide column padded" id="logoutWrap">
-						<button className="ui icon green button"
-						        disabled={!this.state.product}
-						        onClick={this.addProduct.bind(this)}>
-							<i className="add square icon"></i>
-						</button>
-					</div>
-				</div>
+				<Selector ref="productSelector"
+				          options={this.state.products}
+				          label="name"
+				          onOk={this.addProduct.bind(this)}>
+				</Selector>
 
 				<h3 hidden={this.state.selectedProducts.length === 0}>Selected products</h3>
 				<table className="ui single line table striped"
@@ -156,7 +137,6 @@ class SuperScreen extends React.Component {
 						{selectedProducts}
 					</tbody>
 				</table>
-
 			</div>
 		);
 	}

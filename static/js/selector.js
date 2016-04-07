@@ -12,6 +12,8 @@ class Selector extends React.Component {
 			hidden: true,
 			selected: -1
 		};
+
+
 	}
 
 	show() {
@@ -19,41 +21,45 @@ class Selector extends React.Component {
 			hidden: false,
 			selected: -1
 		}, function () {
-			var selector = $(this.refs.selector);
+			if (!this.initiated) {
+				var selector = $(this.refs.selector);
 
-			// After the view is updated, we init the scroller
-			this.myScroll = new IScroll('.selectorContent', {
-				mouseWheel: true,
-				tap: "tapEvent"
-			});
-
-
-			// Bind the action buttons
-			var actions = selector.find(".actions");
-
-			actions.find(".cancel").click((function () {
-				this.setState({
-					hidden: true
+				// After the view is updated, we init the scroller
+				this.myScroll = new IScroll('.selectorContent', {
+					mouseWheel: true,
+					tap: "tapEvent"
 				});
-			}).bind(this));
-
-			actions.find(".ok").click((function () {
-				this.props.onOk(this.props.options[this.state.selected]);
-				this.setState({
-					hidden: true
-				});
-			}).bind(this));
 
 
-			// Enable selecting items
-			var items = selector.find(".selectorContent li");
-			items.on("tapEvent", (function (e) {
-				var index = parseInt($(e.target).attr("data-index"), 10);
+				// Bind the action buttons
+				var actions = selector.find(".actions");
 
-				this.setState({
-					selected: index
-				});
-			}).bind(this));
+				actions.find(".cancel").click((function () {
+					this.setState({
+						hidden: true
+					});
+				}).bind(this));
+
+				actions.find(".ok").click((function () {
+					this.props.onOk(this.props.options[this.state.selected]);
+					this.setState({
+						hidden: true
+					});
+				}).bind(this));
+
+
+				// Enable selecting items
+				var items = selector.find(".selectorContent li");
+				items.on("tapEvent", (function (e) {
+					var index = parseInt($(e.target).attr("data-index"), 10);
+
+					this.setState({
+						selected: index
+					});
+				}).bind(this));
+
+				this.initiated = true;
+			}
 		});
 	}
 
