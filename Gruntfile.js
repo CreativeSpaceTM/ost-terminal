@@ -67,5 +67,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask("build", ["webpack:deploy", "uglify"]);
-	grunt.registerTask("watch", ["webpack:dev", "watch"]);
+	grunt.registerTask("look", ["webpack:dev", "watch:frontend"]);
 };

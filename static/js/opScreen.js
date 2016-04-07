@@ -4,7 +4,7 @@ import React from 'react';
 import _ from "lodash";
 import { hashHistory } from 'react-router';
 
-import Modal from "./modal";
+import Selector from "./selector";
 
 import {STATUS, SIDE} from "./const";
 
@@ -14,7 +14,6 @@ class ProductItem extends React.Component {
 		super(props);
 
 		this.product = props.info;
-
 		this.state = {
 			defect: -1
 		};
@@ -34,15 +33,14 @@ class ProductItem extends React.Component {
 	setNotOk(side) {
 		this.notOkSide = side;
 		this.setState({defect: -1});
-		this.refs.modal.show();
+		this.refs.errorSelector.show();
 	}
 
-	setDefect() {
-		console.log(this.defect);
+	setDefect(defect) {
 		var status = {
 			side: this.notOkSide,
 			status: STATUS.NOTOK,
-			defect: this.state.defect
+			defect: defect.id
 		};
 
 		this.props.onStatusChange(this.product.id, status);
@@ -53,19 +51,6 @@ class ProductItem extends React.Component {
 	}
 
 	render() {
-		var defectBtns = [];
-
-		for (var f = 0; f < this.props.defects.length; f++) {
-			var defect = this.props.defects[f];
-			defectBtns.push((
-				<button className={"ui button" + (this.state.defect === defect.id ? " green" : "")}
-				        key={f}
-				        onClick={this.changeDefect.bind(this, defect.id)}>
-					{defect.name}
-				</button>
-			));
-		}
-
 		return (
 			<div className="productItem">
 				<div className="section">
@@ -96,11 +81,12 @@ class ProductItem extends React.Component {
 						</button>
 				</div>
 
-				<Modal ref="modal" onOk={this.setDefect.bind(this)}>
-					<div className="defects">
-						{defectBtns}
-					</div>
-				</Modal>
+
+				<Selector ref="errorSelector"
+				          options={this.props.defects}
+				          label="name"
+				          onOk={this.setDefect.bind(this)}>
+				</Selector>
 			</div>
 		);
 	}
