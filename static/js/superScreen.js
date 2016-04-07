@@ -80,6 +80,10 @@ class SuperScreen extends React.Component {
 		});
 	}
 
+	filterOutSelectedProducts() {
+		return _.xorBy(this.state.products, this.state.selectedProducts, "id");
+	}
+
 	render() {
 		var selectedProducts = [];
 
@@ -118,7 +122,7 @@ class SuperScreen extends React.Component {
 				</button>
 
 				<Selector ref="productSelector"
-				          options={this.state.products}
+				          options={this.filterOutSelectedProducts()}
 				          label="name"
 				          onOk={this.addProduct.bind(this)}>
 				</Selector>
