@@ -4,7 +4,6 @@ import React from 'react';
 import _ from "lodash";
 import { hashHistory } from 'react-router';
 
-import Modal from "./modal";
 import Selector from "./selector";
 
 import {STATUS, SIDE} from "./const";
@@ -37,11 +36,11 @@ class ProductItem extends React.Component {
 		this.refs.errorSelector.show();
 	}
 
-	setDefect() {
+	setDefect(defect) {
 		var status = {
 			side: this.notOkSide,
 			status: STATUS.NOTOK,
-			defect: this.state.defect
+			defect: defect.id
 		};
 
 		this.props.onStatusChange(this.product.id, status);
@@ -52,8 +51,6 @@ class ProductItem extends React.Component {
 	}
 
 	render() {
-		console.log("defects:", this.props.defects);
-
 		return (
 			<div className="productItem">
 				<div className="section">
@@ -87,6 +84,7 @@ class ProductItem extends React.Component {
 
 				<Selector ref="errorSelector"
 				          options={this.props.defects}
+				          label="name"
 				          onOk={this.setDefect.bind(this)}>
 				</Selector>
 			</div>

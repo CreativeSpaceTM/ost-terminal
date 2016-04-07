@@ -1,31 +1,56 @@
-.ui.basic.modal.visible.transition.selector {
-	margin: 0 !important;
+.selector {
+	padding: 15px;
+	background-color: rgba(0, 0, 0, 0.6);
+	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: calc(100% - 80px) !important;
+	right: 0;
+	bottom: 0;
+	z-index: 9000;
 }
 
-.selector .content {
-	height: 100%;
-}
+	.selector .selectorContent {
+		background-color: #fff;
+		height: calc(100% - 51px);
+		overflow: hidden;
+		border-radius: 3px;
 
-.selectorList {
-	background-color: #fff;
-	height: 100%;
-	color: #000;
-}
-
-	.selectorList ul {
-		list-style: decimal;
-		list-style-position: inside;
-		padding: 0;
+		-webkit-transform: translateZ(0);
+		   -moz-transform: translateZ(0);
+		    -ms-transform: translateZ(0);
+		     -o-transform: translateZ(0);
+		        transform: translateZ(0);
 	}
 
-		.selectorList ul li {
-			border-bottom: 1px solid silver;
-			height: 50px;
-			font-size: 22px;
-			line-height: 50px;
-			padding: 0 10px;
+		.selectorContent ul {
+			list-style: decimal;
+			list-style-position: inside;
+			padding: 0;
+			margin: 0;
+			position: absolute;
+			width: 100%;
+		}
+
+			.selectorContent ul li {
+				border-bottom: 1px solid silver;
+				height: 50px;
+				font-size: 22px;
+				line-height: 50px;
+				padding: 0 10px;
+			}
+
+			.selectorContent ul li.selected {
+				background-color: #3875d7;
+				color: #fff;
+			}
+
+	.selector .actions {
+		margin-top: 15px;
+		text-align: right;
+		position: relative;
+		z-index: 10;
+	}
+
+		.selector .actions .button {
+			margin-left: 5px;
 		}
