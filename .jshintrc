@@ -15,6 +15,7 @@
 	"globals": {
 		"$": false,
 		"com": true,
-		"IScroll": false
+		"IScroll": false,
+		"config": true
 	}
 }

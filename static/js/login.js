@@ -1,4 +1,3 @@
-/*global config*/
 import React from 'react';
 import Keypad from "./keypad";
 import Modal from "./modal";
@@ -32,17 +31,15 @@ class Login extends React.Component {
 	}
 
 	componentDidMount() {
-		$.ajax({
-			url: config.server + "/api/v1.0/user/all",
-			success: $.proxy(function (users) {
-				this.setState({
-					users: users
-				});
-			}, this)
-		});
+		utils.cachedAjax("/api/v1.0/user/all", "users").then($.proxy(function (users) {
+			this.setState({
+				users: users
+			});
+		}, this));
 	}
 
 	login(okBtn) {
+		console.log(this.state.currentUser);
 		$.ajax({
 			url: config.server + "/api/v1.0/user/login",
 			method: "POST",

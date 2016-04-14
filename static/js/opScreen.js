@@ -1,5 +1,3 @@
-/*global config*/
-
 import React from 'react';
 import _ from "lodash";
 import { hashHistory } from 'react-router';
@@ -113,6 +111,7 @@ class OpScreen extends React.Component {
 			products: storedProducts
 		});
 
+		// get defects list
 		$.ajax({
 			url: config.server + "/api/v1.0/defect/all",
 			success: $.proxy(function (defects) {
@@ -144,8 +143,8 @@ class OpScreen extends React.Component {
 			contentType: "application/json",
 			data: JSON.stringify({stats: this.stats}),
 			success: $.proxy(function (response) {
-				console.log("Before:", this.stats);
 				if (response.added) {
+					// remove from local backup the products that where added
 					for (var f = 0; f < response.added.length; f++) {
 						var added = response.added[f];
 						for (var g = 0; g < this.stats.length; g++) {
@@ -156,7 +155,6 @@ class OpScreen extends React.Component {
 							}
 						}
 					}
-					console.log("After:", this.stats);
 					localStorage.setItem("stats", JSON.stringify(this.stats));
 				}
 			}, this)

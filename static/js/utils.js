@@ -16,5 +16,31 @@ module.exports = {
 		else {
 			hashHistory.push("/login");
 		}
+	},
+
+	cachedAjax: function (url, name, method) {
+		return new Promise(function (resolve, reject) {
+			method = method || "get";
+
+			$.ajax({
+				url: config.server + url,
+				method: method,
+				success: function (response) {
+					console.log("Got:", response);
+					localStorage.setItem(name, JSON.stringify(response));
+					resolve(response);
+				},
+				error: function () {
+					var cachedResponse = localStorage.getItem(name);
+					if (cachedResponse) {
+						cachedResponse = JSON.parse(cachedResponse);
+						resolve(cachedResponse);
+					}
+					else {
+						reject();
+					}
+				}
+			});
+		});
 	}
 };

@@ -1,9 +1,8 @@
-/*global config*/
-
 import React from 'react';
 import _ from 'lodash';
 import { hashHistory } from 'react-router';
 import Selector from "./selector";
+import utils from "./utils";
 
 class SuperScreen extends React.Component {
 
@@ -20,14 +19,11 @@ class SuperScreen extends React.Component {
 	}
 
 	componentDidMount() {
-		$.ajax({
-			url: config.server + "/api/v1.0/product/all",
-			success: $.proxy(function (products) {
-				this.setState({
-					products: products
-				});
-			}, this)
-		});
+		utils.cachedAjax("/api/v1.0/product/all", "products").then($.proxy(function (products) {
+			this.setState({
+				products: products
+			});
+		}, this));
 
 		this.state.user = JSON.parse(localStorage.getItem("user"));
 
