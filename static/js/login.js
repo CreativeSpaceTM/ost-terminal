@@ -31,7 +31,7 @@ class Login extends React.Component {
 	}
 
 	componentDidMount() {
-		utils.cachedAjax("/api/v1.0/user/all", "users").then($.proxy(function (users) {
+		utils.cachedAjax("/api/v1.0/user/all").then($.proxy(function (users) {
 			this.setState({
 				users: users
 			});

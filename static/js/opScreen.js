@@ -13,7 +13,8 @@ class ProductItem extends React.Component {
 
 		this.product = props.info;
 		this.state = {
-			defect: -1
+			defect: -1,
+			okPressed: false
 		};
 
 		this.state = _.extend(this.state, this.product);
@@ -26,6 +27,16 @@ class ProductItem extends React.Component {
 		};
 
 		this.props.onStatusChange(this.product.id, status);
+
+		this.setState({
+			okPressed: side
+		});
+
+		setTimeout((function () {
+			this.setState({
+				okPressed: false
+			});
+		}).bind(this), 500);
 	}
 
 	setNotOk(side) {
@@ -52,12 +63,13 @@ class ProductItem extends React.Component {
 		return (
 			<div className="productItem">
 				<div className="section">
-					<h2>{_.capitalize(this.state.name)}</h2>
+					<h2>{_.capitalize(this.state.project)}</h2>
 				</div>
 
-				<div className="section">
+				<div className={"section" + (this.state.okPressed === SIDE.LEFT ? " active" : "")}>
 						<label>Stanga</label>
 						<button className="ui button green huge"
+						        disabled={this.state.okPressed === SIDE.LEFT}
 						        onClick={this.setOk.bind(this, SIDE.LEFT)}>
 							Ok
 						</button>
@@ -67,9 +79,10 @@ class ProductItem extends React.Component {
 						</button>
 				</div>
 
-				<div className="section">
+				<div className={"section" + (this.state.okPressed === SIDE.RIGHT ? " active" : "")}>
 						<label>Dreapta</label>
 						<button className="ui button green huge"
+						        disabled={this.state.okPressed === SIDE.RIGHT}
 						        onClick={this.setOk.bind(this, SIDE.RIGHT)}>
 							Ok
 						</button>
@@ -128,6 +141,7 @@ class OpScreen extends React.Component {
 
 	setStatus(prodId, status) {
 		var statEntry = {
+			reporter: this.state.user.id,
 			product: prodId,
 			timestamp: String(Date.now())
 		};

@@ -19,7 +19,7 @@ class SuperScreen extends React.Component {
 	}
 
 	componentDidMount() {
-		utils.cachedAjax("/api/v1.0/product/all", "products").then($.proxy(function (products) {
+		utils.cachedAjax("/api/v1.0/product/all").then($.proxy(function (products) {
 			this.setState({
 				products: products
 			});
@@ -88,8 +88,10 @@ class SuperScreen extends React.Component {
 
 			selectedProducts.push((
 				<tr key={f}>
-					<td>{selectedProduct.pn}</td>
-					<td>{_.capitalize(selectedProduct.name)}</td>
+					<td>{f + 1}</td>
+					<td>{_.capitalize(selectedProduct.project)}</td>
+					<td>{selectedProduct.leftPn}</td>
+					<td>{selectedProduct.rightPn}</td>
 					<td className="minCell">
 						<button className="ui icon red button"
 						        onClick={this.removeProduct.bind(this, f)}>
@@ -119,7 +121,7 @@ class SuperScreen extends React.Component {
 
 				<Selector ref="productSelector"
 				          options={this.filterOutSelectedProducts()}
-				          label="name"
+				          label="project"
 				          onOk={this.addProduct.bind(this)}>
 				</Selector>
 
@@ -128,8 +130,10 @@ class SuperScreen extends React.Component {
 				       hidden={this.state.selectedProducts.length === 0}>
 					<thead>
 						<tr>
-							<th>PN</th>
+							<th>#</th>
 							<th>Product name</th>
+							<th>Left PN</th>
+							<th>Right PN</th>
 							<th></th>
 						</tr>
 					</thead>

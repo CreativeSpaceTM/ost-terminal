@@ -36,6 +36,16 @@ html,
 			text-align: center;
 		}
 
+		@keyframes colorFlash
+    {
+      0%   {background: #21ba45;}
+      100% {background: #fff;}
+    }
+
+		#opView .productItem .section.active {
+			animation: colorFlash 1s;
+		}
+
 			#opView .productItem .section label {
 				position: absolute;
 				padding: 0 5px;

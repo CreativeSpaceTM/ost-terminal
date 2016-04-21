@@ -18,7 +18,7 @@ module.exports = {
 		}
 	},
 
-	cachedAjax: function (url, name, method) {
+	cachedAjax: function (url, method) {
 		return new Promise(function (resolve, reject) {
 			method = method || "get";
 
@@ -26,12 +26,11 @@ module.exports = {
 				url: config.server + url,
 				method: method,
 				success: function (response) {
-					console.log("Got:", response);
-					localStorage.setItem(name, JSON.stringify(response));
+					localStorage.setItem(url, JSON.stringify(response));
 					resolve(response);
 				},
 				error: function () {
-					var cachedResponse = localStorage.getItem(name);
+					var cachedResponse = localStorage.getItem(url);
 					if (cachedResponse) {
 						cachedResponse = JSON.parse(cachedResponse);
 						resolve(cachedResponse);
